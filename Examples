@@ -8,3 +8,13 @@ LIBNAME newdir "&OutPath";
 
 LIBNAME res ("&OutPath.trying", "&OutPath.trying/something"); /*Here to define folders and subfolders*/
 LIBNAME res clear; /*Bro you dont need no LIBNAME res stored*/
+
+
+/*MAPI email*/
+options emailsys=MAPI emailid='tianchen.liu2.ctr';
+filename mailbox email;
+data _null_;
+file mailbox to='tianchen.liu2.ctr@mail.mil' subject='MAPI test';
+put "Hi";
+run;
+
