@@ -18,3 +18,18 @@ file mailbox to='tianchen.liu2.ctr@mail.mil' subject='MAPI test';
 put "Hi";
 run;
 
+/*Import Export XLSX*/
+PROC IMPORT OUT = work.test1 Datafile = "C:\Users\tliu1\Documents\Work\test.xlsx" 
+   DBMS = xlsx REPLACE;
+   Sheet = "testtable";
+   Getnames = YES;
+Run;
+/*Here we can do some proc SQL data manipulation*/
+proc export data=test1 outfile ='C:\Users\tliu1\Documents\Work\test2.xlsx' dbms = xlsx replace;
+run;
+
+/*JSON Export*/
+
+proc json out='C:\Users\tliu1\Documents\Work\test3.json' pretty nosastags nokeys;
+   export work.test1 (where=(Value=9)); /*Where conditions*/
+run;
